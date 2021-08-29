@@ -1,59 +1,49 @@
-<?php 
-
-include 'config.php';
-
-session_start();
-
-error_reporting(0);
-
-if (isset($_SESSION['username'])) {
-    header("Location: welcome.php");
-}
-
-if (isset($_POST['submit'])) {
-	$email = $_POST['email'];
-	$password = md5($_POST['password']);
-
-	$sql = "SELECT * FROM users WHERE email='$email' AND password='$password'";
-	$result = mysqli_query($conn, $sql);
-	if ($result->num_rows > 0) {
-		$row = mysqli_fetch_assoc($result);
-		$_SESSION['username'] = $row['username'];
-		header("Location: welcome.php");
-	} else {
-		echo "<script>alert('Woops! Email or Password is Wrong.')</script>";
-	}
-}
-
-?>
-
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
 
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css" integrity="sha512-NmLkDIU1C/C88wi324HBc+S2kLhi08PN5GDeUVVVC/BVt/9Izdsc9SVeVfA1UZbY3sHUlDSyRXhCzHfr6hmPPw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-	<link rel="stylesheet" type="text/css" href="style.css">
+<link rel="stylesheet" href="style.css">
 
-	<title>Login Form - Pure Coding</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap" rel="stylesheet">
+
+
 </head>
 <body>
-	<div class="container">
-		<form action="" method="POST" class="login-email">
-			<p class="login-text" style="font-size: 2rem; font-weight: 800;">Login</p>
-			<div class="input-group">
-				<input type="email" placeholder="Email" name="email" value="<?php echo $email; ?>" required>
-			</div>
-			<div class="input-group">
-				<input type="password" placeholder="Password" name="password" value="<?php echo $_POST['password']; ?>" required>
-			</div>
-			<div class="input-group">
-				<button name="submit" class="btn">Login</button>
-			</div>
-			<p class="login-register-text">Don't have an account? <a href="register.php">Register Here</a>.</p>
-		</form>
-	</div>
+
+<div class="header">
+  <div class="logo"></div>
+  <img src="logo.png" alt="">
+  <ul class="menu">
+    <li><a href="">Home</a></li>
+    <li><a href="">Single</a></li>
+    <li><a href="">Contact</a></li>
+  </ul>
+  <div class="cta">
+    <a href="https://logiga.github.io/lgg/login/" class="button">LOGIN</a>
+  </div>
+  <div class="hamburger">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<div class="hero">
+  <div class="hero__content">
+    <p class="intro-text">intro Text</p>
+    <h1 class="big-text">Titolo della mia Pagina Web</h1>
+    <a href="" class="button">Discover More</a>
+  </div>
+</div>
+
+
 </body>
 </html>
